@@ -1,0 +1,16 @@
+﻿{   
+    propertyEditors: [      
+        {
+			alias: "Ubolt.OpeningHours",
+            name: "Ubolt Opening Hours",
+            editor: {
+                view: "~/App_Plugins/Ubolt.OpeningHours/openinghours.html",
+				hideLabel: false,
+				valueType: "TEXT"
+            }
+        }
+    ],
+    javascript: [
+        '~/App_Plugins/Ubolt.OpeningHours/openinghours.controller.js'
+    ]
+}

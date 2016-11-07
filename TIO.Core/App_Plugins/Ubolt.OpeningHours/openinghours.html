@@ -1,0 +1,102 @@
+﻿<div class="umb-editor ubolt-openinghours" ng-controller="Ubolt.OpeningHoursController">
+    <div class="form-inline">
+        <label class="checkbox label-day">
+            <input type="checkbox" name="monday-scheduled" ng-model="model.value.monday.scheduled" />
+            Monday 
+        </label>
+        <span ng-if="model.value.monday.scheduled">
+            <input type="text" class="input-small" ng-model="model.value.monday.from" placeholder="From" ng-required="model.value.monday.scheduled" />
+            <label> - </label>
+            <input type="text" class="input-small" ng-model="model.value.monday.till" placeholder="Till" ng-required="model.value.monday.scheduled" />
+        </span>
+        <span class="label" ng-if="!model.value.monday.scheduled">Closed
+        </span>
+    </div>
+
+    <div class="form-inline">
+        <label class="checkbox label-day">
+            <input type="checkbox" name="tuesday-scheduled" ng-model="model.value.tuesday.scheduled" />
+            Tuesday 
+        </label>
+        <span ng-if="model.value.tuesday.scheduled">
+            <input type="text" class="input-small" ng-model="model.value.tuesday.from" placeholder="From" ng-required="model.value.tuesday.scheduled" />
+            <label> - </label>
+            <input type="text" class="input-small" ng-model="model.value.tuesday.till" placeholder="Till" ng-required="model.value.tuesday.scheduled" />
+        </span>
+        <span class="label" ng-if="!model.value.tuesday.scheduled">Closed
+        </span>
+    </div>
+
+    <div class="form-inline">
+        <label class="checkbox label-day">
+            <input type="checkbox" name="wednesday-scheduled" ng-model="model.value.wednesday.scheduled" />
+            Wednesday 
+        </label>
+        <span ng-if="model.value.wednesday.scheduled">
+            <input type="text" class="input-small" ng-model="model.value.wednesday.from" placeholder="From" ng-required="model.value.wednesday.scheduled" />
+            <label> - </label>
+            <input type="text" class="input-small" ng-model="model.value.wednesday.till" placeholder="Till" ng-required="model.value.wednesday.scheduled" />
+        </span>
+        <span class="label" ng-if="!model.value.wednesday.scheduled">Closed
+        </span>
+    </div>
+
+
+    <div class="form-inline">
+        <label class="checkbox label-day">
+            <input type="checkbox" name="thursday-scheduled" ng-model="model.value.thursday.scheduled" />
+            Thursday 
+        </label>
+        <span ng-if="model.value.thursday.scheduled">
+            <input type="text" class="input-small" ng-model="model.value.thursday.from" placeholder="From" ng-required="model.value.thursday.scheduled" />
+            <label> - </label>
+            <input type="text" class="input-small" ng-model="model.value.thursday.till" placeholder="Till" ng-required="model.value.thursday.scheduled" />
+        </span>
+        <span class="label" ng-if="!model.value.thursday.scheduled">Closed
+        </span>
+    </div>
+
+    <div class="form-inline">
+        <label class="checkbox label-day">
+            <input type="checkbox" name="friday-scheduled" ng-model="model.value.friday.scheduled" />
+            Friday 
+        </label>
+        <span ng-if="model.value.friday.scheduled">
+            <input type="text" class="input-small" ng-model="model.value.friday.from" placeholder="From" ng-required="model.value.friday.scheduled" />
+            <label> - </label>
+            <input type="text" class="input-small" ng-model="model.value.friday.till" placeholder="Till" ng-required="model.value.friday.scheduled" />
+        </span>
+        <span class="label" ng-if="!model.value.friday.scheduled">Closed
+        </span>
+    </div>
+
+
+    <div class="form-inline">
+        <label class="checkbox label-day">
+            <input type="checkbox" name="saturday-scheduled" ng-model="model.value.saturday.scheduled" />
+            Saturday 
+        </label>
+        <span ng-if="model.value.saturday.scheduled">
+            <input type="text" class="input-small" ng-model="model.value.saturday.from" placeholder="From" ng-required="model.value.saturday.scheduled" />
+            <label> - </label>
+            <input type="text" class="input-small" ng-model="model.value.saturday.till" placeholder="Till" ng-required="model.value.saturday.scheduled" />
+        </span>
+        <span class="label" ng-if="!model.value.saturday.scheduled">Closed
+        </span>
+    </div>
+
+    <div class="form-inline">
+        <label class="checkbox label-day">
+            <input type="checkbox" name="sunday-scheduled" ng-model="model.value.sunday.scheduled" />
+            Sunday 
+        </label>
+        <span ng-if="model.value.sunday.scheduled">
+            <input type="text" class="input-small" ng-model="model.value.sunday.from" placeholder="From" ng-required="model.value.sunday.scheduled" />
+            <label> - </label>
+            <input type="text" class="input-small" ng-model="model.value.sunday.till" placeholder="Till" ng-required="model.value.sunday.scheduled" />
+        </span>
+        <span class="label" ng-if="!model.value.sunday.scheduled">Closed
+        </span>
+    </div>
+
+</div>

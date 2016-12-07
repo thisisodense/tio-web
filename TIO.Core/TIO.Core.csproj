@@ -91,13 +91,11 @@
       <HintPath>..\packages\Ubolt.OpeningHours.0.9\lib\Ubolt.OpeningHours.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="umbraco, Version=1.0.5948.18146, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\UmbracoCms.Core.7.5.2\lib\umbraco.dll</HintPath>
+    <Reference Include="umbraco">
+      <HintPath>..\..\tio-dev\TIO.Web\bin\umbraco.dll</HintPath>
     </Reference>
-    <Reference Include="Umbraco.Core, Version=1.0.5948.18141, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\UmbracoCms.Core.7.5.2\lib\Umbraco.Core.dll</HintPath>
+    <Reference Include="Umbraco.Core">
+      <HintPath>..\..\tio-dev\TIO.Web\bin\Umbraco.Core.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>

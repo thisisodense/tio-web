@@ -38,13 +38,11 @@
       <HintPath>..\packages\Microsoft.AspNet.Mvc.5.2.3\lib\net45\System.Web.Mvc.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="System.Web.WebPages, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.WebPages.dll</HintPath>
+    <Reference Include="System.Web.WebPages">
+      <HintPath>..\..\tio-dev\TIO.Web\bin\System.Web.WebPages.dll</HintPath>
     </Reference>
-    <Reference Include="umbraco, Version=1.0.5948.18146, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\UmbracoCms.Core.7.5.2\lib\umbraco.dll</HintPath>
+    <Reference Include="umbraco">
+      <HintPath>..\..\tio-dev\TIO.Web\bin\umbraco.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>

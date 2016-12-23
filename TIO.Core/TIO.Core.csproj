@@ -92,10 +92,10 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="umbraco">
-      <HintPath>..\..\tio-dev\TIO.Web\bin\umbraco.dll</HintPath>
+      <HintPath>..\TIO.Web\bin\umbraco.dll</HintPath>
     </Reference>
     <Reference Include="Umbraco.Core">
-      <HintPath>..\..\tio-dev\TIO.Web\bin\Umbraco.Core.dll</HintPath>
+      <HintPath>..\TIO.Web\bin\Umbraco.Core.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>

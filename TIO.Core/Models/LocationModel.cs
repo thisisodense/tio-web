@@ -31,8 +31,7 @@ namespace TIO.Core.Models
         public int Id { get; private set; }
         public int OldId { get; private set; }
         public bool IsDetails { get; private set; }
-        public bool OpeningHoursAreTheSame { get; private set; }
-        public string SimpleOpeningHours { get; set; }
+        public List<KeyValuePair<string, string>> SimpleOpeningHours { get; set; }
         public bool PlacesToGoin2015 { get; private set; }
         public bool PlacesToGoIn2016 { get; private set; }
         public bool FromRecommendation { get; private set; }
@@ -112,20 +111,16 @@ namespace TIO.Core.Models
             openingHours.Add(new GroupOpeningHours(helper.GetDictionaryValue("Lør"), this.Openings.Saturday));
             openingHours.Add(new GroupOpeningHours(helper.GetDictionaryValue("Søn"), this.Openings.Sunday));
 
+
+            SimpleOpeningHours = new List<KeyValuePair<string, string>>();
+
             var groupedOpeningHours = openingHours.GroupBy(x => new { x.Date.From, x.Date.Till });
-
-            if (groupedOpeningHours.Count() == 1)
-                this.OpeningHoursAreTheSame = true;
-
-            List<string> openingdays = new List<string>();
-
             foreach (var openingHour in groupedOpeningHours)
             {
-                openingdays.Add(string.Format("{0} - {1}: {2} - {3}", openingHour.FirstOrDefault().Day, openingHour.LastOrDefault().Day, openingHour.Key.From, openingHour.Key.Till));
+                //openingdays.Add(string.Format("{0} - {1}: {2} - {3}", openingHour.FirstOrDefault().Day, openingHour.LastOrDefault().Day, openingHour.Key.From, openingHour.Key.Till));
+                string days = openingHour.FirstOrDefault().Day == openingHour.LastOrDefault().Day ? openingHour.FirstOrDefault().Day : string.Format("{0} - {1}", openingHour.FirstOrDefault().Day, openingHour.LastOrDefault().Day);
+                SimpleOpeningHours.Add(new KeyValuePair<string, string>(days, string.Format("{0} - {1}", openingHour.Key.From, openingHour.Key.Till)));
             }
-
-            if (openingdays.Count() == 1)
-                this.SimpleOpeningHours = openingdays.FirstOrDefault();
         }
     }
 

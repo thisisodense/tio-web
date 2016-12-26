@@ -42,6 +42,8 @@ namespace TIO.Core.Models
         public bool HaveGuestWriter { get; set; }
         public bool IsFirstRecommendation { get; set; }
         public int OldId { get; private set; }
+        public int TranslatorId { get; private set; }
+        public string TranslatorName { get; private set; }
 
         public int GetId()
         {
@@ -103,7 +105,7 @@ namespace TIO.Core.Models
             this.TicketUrl = content.GetPropertyValue<string>(Constants.Recommendation.Properties.TICKET_URL);
             this.OldId = content.GetPropertyValue<int>(Constants.Recommendation.Properties.OLD_ID);
 
-            if(this.IsGuestWriter == false)
+            if (this.IsGuestWriter == false)
             {
                 int writerId = content.GetPropertyValue<int>(Constants.Recommendation.Properties.WRITER);
                 this.WriterId = writerId;
@@ -113,6 +115,15 @@ namespace TIO.Core.Models
                 {
                     this.WriterName = writer.Name;
                 }             
+            }
+
+            int translatorId = content.GetPropertyValue<int>(Constants.Recommendation.Properties.TRANSLATOR);
+            this.TranslatorId = translatorId;
+            IPublishedContent translator = this.Helper.TypedContent(translatorId);
+
+            if (translator != null)
+            {
+                this.TranslatorName = translator.Name;
             }
 
             int locationId = content.GetPropertyValue<int>(Constants.Recommendation.Properties.LOCATION);

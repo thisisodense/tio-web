@@ -50,6 +50,7 @@
                 public const string OLD_ID = "oldId";
                 public const string OLD_IMAGE = "oldImage";
                 public const string WEEK = "weekNumber";
+                public const string TRANSLATOR = "translator";
             }
         }
 

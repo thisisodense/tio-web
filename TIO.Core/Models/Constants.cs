@@ -100,6 +100,7 @@
                 public const string FROM_RECOMMENDATION = "fromRecommendation";
                 public const string FOTOGRAF = "fotograf";
                 public const string FOTOGRAF_URL = "fotografURL";
+                public const string TRANSLATOR = "translatedBy";
             }
         }
         

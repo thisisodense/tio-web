@@ -40,6 +40,9 @@ namespace TIO.Core.Models
         public string Fotograf { get; private set; }
         public string FotografURL { get; private set; }
 
+        public string TranslatorName { get; private set; }
+        public int TranslatorId { get; set; }
+
         public LocationModel(
             IPublishedContent content,
             IPublishedContent recommendationRepository,
@@ -98,6 +101,14 @@ namespace TIO.Core.Models
             {
                 this.WriterName = writer.GetValue<string>(Constants.Writer.Properties.NAME);
                 this.WriterId = writer.Id;
+            }
+
+            IContent translator = contentService.GetById(content.GetPropertyValue<int>(Constants.Location.Properties.TRANSLATOR));
+
+            if (translator != null)
+            {
+                this.TranslatorName = translator.GetValue<string>(Constants.Writer.Properties.NAME);
+                this.TranslatorId = translator.Id;
             }
 
             UmbracoHelper helper = new UmbracoHelper();

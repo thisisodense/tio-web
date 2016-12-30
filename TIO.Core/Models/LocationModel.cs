@@ -129,7 +129,7 @@ namespace TIO.Core.Models
             for(int i = 0; i < openingHours.Count; i++)
             {
                 var openingHour = openingHours[i];
-                string currentHours = string.Format("{0} - {1}", openingHour.Date.From, openingHour.Date.Till);
+                string currentHours = string.Format("{0} - {1}", openingHour.Date.From, openingHour.Date.Till); 
 
                 if ("-".Equals(currentHours.Trim()))
                 {

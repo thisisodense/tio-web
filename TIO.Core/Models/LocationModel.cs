@@ -124,13 +124,28 @@ namespace TIO.Core.Models
 
 
             SimpleOpeningHours = new List<KeyValuePair<string, string>>();
-
-            var groupedOpeningHours = openingHours.GroupBy(x => new { x.Date.From, x.Date.Till });
-            foreach (var openingHour in groupedOpeningHours)
+            
+            string fromDay = "";
+            for(int i = 0; i < openingHours.Count; i++)
             {
-                //openingdays.Add(string.Format("{0} - {1}: {2} - {3}", openingHour.FirstOrDefault().Day, openingHour.LastOrDefault().Day, openingHour.Key.From, openingHour.Key.Till));
-                string days = openingHour.FirstOrDefault().Day == openingHour.LastOrDefault().Day ? openingHour.FirstOrDefault().Day : string.Format("{0} - {1}", openingHour.FirstOrDefault().Day, openingHour.LastOrDefault().Day);
-                SimpleOpeningHours.Add(new KeyValuePair<string, string>(days, string.Format("{0} - {1}", openingHour.Key.From, openingHour.Key.Till)));
+                var openingHour = openingHours[i];
+                string currentHours = string.Format("{0} - {1}", openingHour.Date.From, openingHour.Date.Till);
+
+                if ("-".Equals(currentHours.Trim()))
+                {
+                    currentHours = helper.GetDictionaryValue("Lukket");
+                }
+
+                if (SimpleOpeningHours.Count > 0 && SimpleOpeningHours[SimpleOpeningHours.Count - 1].Value == currentHours)
+                {
+                    SimpleOpeningHours.RemoveAt(SimpleOpeningHours.Count - 1);
+                    SimpleOpeningHours.Add(new KeyValuePair<string, string>(string.Format("{0} - {1}", fromDay, openingHour.Day), currentHours));
+                }
+                else
+                {
+                    fromDay = openingHour.Day;
+                    SimpleOpeningHours.Add(new KeyValuePair<string, string>(fromDay, currentHours));
+                }
             }
         }
     }

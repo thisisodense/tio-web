@@ -77,7 +77,8 @@ namespace TIO.Core.Models
 
 
             this.Recommendations = this.Recommendations
-                                            .OrderBy(x => x.StartDate)
+                                            .OrderByDescending(x => x.IsGuestWriter)
+                                            .ThenBy(x => x.StartDate)
                                             .Take(6)
                                             .ToList();
 

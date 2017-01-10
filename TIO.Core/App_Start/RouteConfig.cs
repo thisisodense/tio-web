@@ -131,6 +131,20 @@ namespace TIO.Core
                 virtualNodeHandler: new UmbracoVirtualNodeByIdRouteHandler(root != null ? root.Id : 0) 
             );
 
+            routes.MapUmbracoRoute(
+               name: "preview",
+               url: "{id}.aspx",
+               defaults: new
+               {
+                   controller = "Recommendation",
+                   action = "Recommendation",
+                   lang = "da",
+                   name = UrlParameter.Optional
+               },
+               constraints: new { id = @"\d+" },
+               virtualNodeHandler: new RecommendationNodeRouteHandler()
+            );
+
             routes.MapRoute(
                 name: "defaultMVC",
                 url: "{controller}/{action}/{id}",

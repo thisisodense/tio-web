@@ -36,8 +36,8 @@
                 public const string SUB_HEADER_UK = "subheaderEnglish";
                 public const string BODY = "summary";
                 public const string BODY_UK = "summaryEnglish";
-                public const string WRITER = "writer";
-                public const string LOCATION = "location";
+                public const string WRITER = "writerRecommendation";
+                public const string LOCATION = "locationRecommendation";
                 public const string ORGANIZER = "organizer";
                 public const string PRICE = "price";
                 public const string START_TIME = "startTime";
@@ -50,7 +50,7 @@
                 public const string OLD_ID = "oldId";
                 public const string OLD_IMAGE = "oldImage";
                 public const string WEEK = "weekNumber";
-                public const string TRANSLATOR = "translator";
+                public const string TRANSLATOR = "translatorRecommendation";
             }
         }
 
@@ -83,7 +83,7 @@
                 public const string TITLE = "title";
                 public const string TAGS = "tags";
                 public const string CATEGORIES = "categories";
-                public const string WRITER = "writer";
+                public const string WRITER = "writerLocation";
                 public const string SHORT_DESCRIPTION = "shortdescription";
                 public const string SHORT_DESCRIPTION_EN = "shortdescriptionenglish";
                 public const string LONG_DESCRIPTION = "longdescription";
@@ -100,7 +100,7 @@
                 public const string FROM_RECOMMENDATION = "fromRecommendation";
                 public const string FOTOGRAF = "fotograf";
                 public const string FOTOGRAF_URL = "fotografURL";
-                public const string TRANSLATOR = "translatedBy";
+                public const string TRANSLATOR = "translatorLocation";
             }
         }
         

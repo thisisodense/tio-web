@@ -16,7 +16,7 @@ namespace ThisIsOdense.Website.Controllers
 
         public virtual ActionResult Tips()
         {
-            return RedirectPermanent("https://podio.com/webforms/14443699/967917");
+            return RedirectPermanent("http://m.me/ThisIsOdense");
         }
     }
 }

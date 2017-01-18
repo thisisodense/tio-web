@@ -34,7 +34,6 @@ namespace TIO.Core.Models
         public string LinkToEvent { get; private set; }
         public string TicketUrl { get; private set; }
         public string ImageUrl { get; private set; }
-        public string ImageFacebookUrl { get; private set; }
         public int Id { get; private set; }
         public bool IsEnglish { get; private set; }
         public bool IsDetails { get; private set; }
@@ -103,7 +102,6 @@ namespace TIO.Core.Models
             this.EventType = content.GetPropertyValue<string>(Constants.Recommendation.Properties.EVENT_TYPE);
             this.LinkToEvent = content.GetPropertyValue<string>(Constants.Recommendation.Properties.LINK_TO_EVENT);
             this.ImageUrl = content.GetCropUrl(Constants.Recommendation.Properties.IMAGE_URL, Constants.Crop.RECOMMENDATION_IMAGE);
-            this.ImageFacebookUrl = content.GetCropUrl(propertyAlias: Constants.Recommendation.Properties.IMAGE_URL, imageCropMode: ImageCropMode.Max, width: 500);
             this.TicketUrl = content.GetPropertyValue<string>(Constants.Recommendation.Properties.TICKET_URL);
             this.OldId = content.GetPropertyValue<int>(Constants.Recommendation.Properties.OLD_ID);
 

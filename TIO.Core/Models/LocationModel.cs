@@ -24,6 +24,7 @@ namespace TIO.Core.Models
         public string LongDescription { get; private set; }
         public OpeningHoursModel Openings { get; private set; }
         public string Image { get; private set; }
+        public string FacebookImage { get; private set; }
         public string Url { get; private set; }
         public string Phone { get; private set; }
         public string Email { get; private set; }
@@ -66,6 +67,7 @@ namespace TIO.Core.Models
             this.Address = content.GetPropertyValue<string>(Constants.Location.Properties.ADDRESS);
             this.Openings = content.GetPropertyValue<OpeningHoursModel>(Constants.Location.Properties.OPENING_HOURS);
             this.Image = content.GetCropUrl(Constants.Location.Properties.IMAGE, Constants.Crop.LOCATION_IMAGE);
+            this.FacebookImage = content.GetCropUrl(Constants.Location.Properties.IMAGE, Constants.Crop.FACEBOOK_IMAGE);
             this.Url = content.GetPropertyValue<string>(Constants.Location.Properties.URL);
             this.Phone = content.GetPropertyValue<string>(Constants.Location.Properties.PHONE_NUMBER);
             this.Email = content.GetPropertyValue<string>(Constants.Location.Properties.EMAIL);

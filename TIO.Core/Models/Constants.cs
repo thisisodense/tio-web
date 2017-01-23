@@ -109,6 +109,7 @@
             public const string RECOMMENDATION_IMAGE = "recommendationCrop";
             public const string WRITER_IMAGE = "writerCrop";
             public const string LOCATION_IMAGE = "locationCrop";
+            public const string FACEBOOK_IMAGE = "facebookCrop";
         } 
 
         public class Js

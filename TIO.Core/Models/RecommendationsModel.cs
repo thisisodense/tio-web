@@ -13,6 +13,11 @@ namespace TIO.Core.Models
     public class RecommendationsModel : RenderModel
     {
         public List<RecommendationModel> Recommendations { get; private set; }
+        public int ThisWeeksEditorId { get; private set; }
+        public string ThisWeeksEditorName { get; private set; }
+        public string ThisWeeksEdtiorPhoto { get; private set; }
+        public string WeekDescription { get; private set; }
+        public string WeekDescriptionEN { get; private set; }
         public string MainWriterName
         {
             get
@@ -71,6 +76,20 @@ namespace TIO.Core.Models
 
             if (recommendations == null)
                 return;
+
+            UmbracoHelper helper = new UmbracoHelper(UmbracoContext.Current, content);
+
+            IPublishedContent writer = helper.TypedContent(recommendationsRespository.GetPropertyValue<int>(Constants.Recommendations.Properties.EDITOR_OF_WEEK));
+
+            if (writer != null)
+            {
+                this.ThisWeeksEditorName = writer.GetPropertyValue<string>(Constants.Writer.Properties.NAME);
+                this.ThisWeeksEditorId = writer.Id;
+                this.ThisWeeksEdtiorPhoto = writer.GetCropUrl(Constants.Writer.Properties.IMAGE, Constants.Crop.MINITURE_CROP);
+            }
+
+            this.WeekDescription = recommendationsRespository.GetPropertyValue<string>(Constants.Recommendations.Properties.WEEK_DESCRIPTION);
+            this.WeekDescriptionEN = recommendationsRespository.GetPropertyValue<string>(Constants.Recommendations.Properties.WEEK_DESCRIPTION_EN);
 
             this.Recommendations.AddRange(recommendations
                                     .Select(x => RecommendationFactory.Create(x, recommendationsRespository, contentService, isEnglish, isDetails)));

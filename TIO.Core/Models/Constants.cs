@@ -10,6 +10,10 @@
             public const string WRITER_REPOSITORY = "WriterRepository";
             public const string LOCATION_REPOSITORY = "LocationRepository";
             public const string LOCATION = "Location";
+            public const string ARTICLE = "Article";
+            public const string ARTICLE_REPOSISTORY = "ArticleRepository";
+            public const string ARTICLE_TAG_GROUP = "WebTagsLongread";
+            public const string ARTICLE_DEFAULT_TAG = "Articles";
             public const string TAG_GROUP = "WebTags";
             public const string DEFAULT_TAG = "Top Picks";
         }
@@ -18,6 +22,15 @@
         {
             public const string EVENT_TYPES = "Dropdown event types";
             public const string CATEGROIES = "Dropdown Location Categories";
+        }
+        public class Recommendations
+        {
+            public class Properties
+            {
+                public const string EDITOR_OF_WEEK = "editorOfTheWeek";
+                public const string WEEK_DESCRIPTION = "weekDescriptionDA";
+                public const string WEEK_DESCRIPTION_EN = "weekDescriptionEN";
+            }
         }
 
         public class Recommendation
@@ -103,6 +116,32 @@
                 public const string TRANSLATOR = "translatorLocation";
             }
         }
+
+        public class Article
+        {
+            public class Properties
+            {
+                public const string HEADLINE = "headline";
+                public const string WRITER_LONGREAD = "writerLongread";
+                public const string WEEKNUMBER = "weekNumber";
+                public const string PUBLISH_DATE = "udgivelsesdato";
+                public const string CATEGORY_LONGREAD = "categoriesLongread";
+                public const string TAGS = "tags";
+                public const string SUMMARY = "summary";
+                public const string klarTilKorrektur = "klarTilKorrektur";
+                public const string klarTilOversaettelse = "klarTilOversaettelse";
+                public const string translatorLongread = "translatorLongread";
+                public const string headlineEnglish = "headlineEnglish";
+                public const string summaryEnglish = "summaryEnglish";
+                public const string Image = "Image";
+                public const string guestWriter = "guestWriter";
+                public const string nameOfGuestWriter = "nameOfGuestWriter";
+                public const string linkToGuestWriter = "linkToGuestWriter";
+                public const string fotograf = "fotograf";
+                public const string fotografURL = "fotografURL";
+
+            }
+        }
         
         public class Crop
         {
@@ -110,6 +149,7 @@
             public const string WRITER_IMAGE = "writerCrop";
             public const string LOCATION_IMAGE = "locationCrop";
             public const string FACEBOOK_IMAGE = "facebookCrop";
+            public const string MINITURE_CROP = "miniatureCrop";
         } 
 
         public class Js
@@ -155,6 +195,16 @@
                 public class Actions
                 {
                     public const string WRITER = "Writer";
+                }
+            }
+
+            public class Article
+            {
+                public const string NAME = "Article";
+
+                public class Actions
+                {
+                    public const string ARTICLE = "Article";
                 }
             }
         }

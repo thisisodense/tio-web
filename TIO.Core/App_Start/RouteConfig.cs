@@ -88,6 +88,49 @@ namespace TIO.Core
            );
 
             routes.MapUmbracoRoute(
+               name: "enDefaultArticles",
+               url: "{lang}/articles/{tagId}/{tag}",
+               defaults: new
+               {
+                   lang = "da",
+                   tagId = UrlParameter.Optional,
+                   tag = UrlParameter.Optional,
+                   controller = "Articles",
+                   action = "Articles"
+               },
+               constraints: new { lang = "[a-z]{2}" },
+               virtualNodeHandler: new UmbracoVirtualNodeByIdRouteHandler(root != null ? root.Id : 0)
+           );
+
+            routes.MapUmbracoRoute(
+                name: "enArticleDetails",
+                url: "{lang}/article/{id}/{name}",
+                defaults: new
+                {
+                    controller = "Article",
+                    action = "Article",
+                    lang = "da",
+                    name = UrlParameter.Optional
+                },
+                constraints: new { lang = "[a-z]{2}", id = @"\d+" },
+                virtualNodeHandler: new RecommendationNodeRouteHandler()
+            );
+
+            routes.MapUmbracoRoute(
+               name: "articleDetails",
+               url: "article/{id}/{name}",
+               defaults: new
+               {
+                   controller = "Article",
+                   action = "Article",
+                   lang = "da",
+                   name = UrlParameter.Optional
+               },
+               constraints: new { lang = "[a-z]{2}", id = @"\d+" },
+               virtualNodeHandler: new RecommendationNodeRouteHandler()
+           );
+
+            routes.MapUmbracoRoute(
                 name: "enDetails",
                 url: "{lang}/{id}/{name}",
                 defaults: new

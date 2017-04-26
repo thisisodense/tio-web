@@ -24,7 +24,7 @@ namespace TIO.Core.Models
         public LocationModel Location { get; private set; }
         public string Organizer { get; private set; }
         public DateTime StartDate { get; private set; }
-        public DateTime? EndDate { get; private set; }
+        public DateTime EndDate { get; private set; }
         public int Week { get { return StartDate.GetIso8601WeekOfYear(); } }
         public decimal Price { get; private set; }
         public DateTime StartTime { get; private set; }
@@ -53,7 +53,7 @@ namespace TIO.Core.Models
 
         public DateTime GetDate()
         {
-            return EndDate.HasValue && StartDate <= DateTimeOffset.UtcNow.Date && EndDate >= DateTimeOffset.UtcNow.Date ? DateTimeOffset.UtcNow.Date : StartDate.Date;
+            return EndDate != DateTime.MinValue && StartDate <= DateTimeOffset.UtcNow.Date && EndDate >= DateTimeOffset.UtcNow.Date ? DateTimeOffset.UtcNow.Date : StartDate.Date;
         }
         public bool IsCurrent
         {
@@ -95,7 +95,7 @@ namespace TIO.Core.Models
             this.WriterUrl = content.GetPropertyValue<string>(Constants.Recommendation.Properties.GUEST_WRITER_LINK);
             this.Organizer = content.GetPropertyValue<string>(Constants.Recommendation.Properties.ORGANIZER);
             this.StartDate = content.GetPropertyValue<DateTime>(Constants.Recommendation.Properties.START_DATE);
-            this.EndDate = content.GetPropertyValue<DateTime?>(Constants.Recommendation.Properties.END_DATE);
+            this.EndDate = content.GetPropertyValue<DateTime>(Constants.Recommendation.Properties.END_DATE);
             this.Price = content.GetPropertyValue<decimal>(Constants.Recommendation.Properties.PRICE);
             this.StartTime = content.GetPropertyValue<DateTime>(Constants.Recommendation.Properties.START_TIME);
             this.EndTime = content.GetPropertyValue<DateTime?>(Constants.Recommendation.Properties.END_TIME);

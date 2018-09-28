@@ -18,7 +18,8 @@ namespace TIO.Core.Models
             if (writerRepository == null)
                 return;
 
-            IEnumerable<IPublishedContent> writers = writerRepository.Children(x => x.IsVisible());
+            IEnumerable<IPublishedContent> writers = writerRepository
+                .Children(x => x.IsVisible() && x.GetPropertyValue<bool>(Constants.Writer.Properties.SHOW));
 
             if (writers == null)
                 return;

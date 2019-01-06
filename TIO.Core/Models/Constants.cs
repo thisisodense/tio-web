@@ -207,6 +207,15 @@
                     public const string ARTICLE = "Article";
                 }
             }
+
+            public class Articles
+            {
+                public const string NAME = "Articles";
+                public class Actions
+                {
+                    public const string ARTICLES = "Articles";
+                }
+            }
         }
     }
 }

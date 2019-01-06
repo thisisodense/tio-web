@@ -9,7 +9,7 @@ namespace TIO.Core.Controllers
 {
     public class ArticlesController : BaseController
     {
-        public ActionResult Articles(int? tagId, string tag)
+        public ActionResult Articles(int? tagId, string tag, int page = 1)
         {
             IPublishedContent articleRespository = Umbraco.TypedContentAtRoot().FirstOrDefault()
                          .FirstChild(x => x.DocumentTypeAlias == Constants.NodeAlias.RECOMMENDATIONS_REPOSITORY);
@@ -20,6 +20,7 @@ namespace TIO.Core.Controllers
                                             Site.IsEnglish,
                                             tagId,
                                             tag,
+                                            page,
                                             Services.ContentService);
 
             return CurrentTemplate(model);

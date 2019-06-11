@@ -106,8 +106,10 @@
     <Compile Include="Controllers\LocationsController.cs" />
     <Compile Include="Controllers\RecommendationController.cs" />
     <Compile Include="Controllers\RecommendationsController.cs" />
+    <Compile Include="Controllers\WriterAcrhiveController.cs" />
     <Compile Include="Controllers\WriterController.cs" />
     <Compile Include="Models\ActicleFactory.cs" />
+    <Compile Include="Models\ArchiveModel.cs" />
     <Compile Include="Models\ArticleDKModel.cs" />
     <Compile Include="Models\ArticleModel.cs" />
     <Compile Include="Models\ArticlesModel.cs" />

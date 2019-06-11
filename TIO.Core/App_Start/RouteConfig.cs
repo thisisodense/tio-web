@@ -19,19 +19,6 @@ namespace TIO.Core
             var root = new UmbracoHelper(UmbracoContext.Current).TypedContentAtRoot().FirstOrDefault();
 
             routes.MapUmbracoRoute(
-               name: "writer",
-               url: "writer/{id}/{name}",
-               defaults: new
-               {
-                   controller = "Writer",
-                   action = "Writer",
-                   name = UrlParameter.Optional
-               },
-               constraints: new { id = @"\d+" },
-               virtualNodeHandler: new RecommendationNodeRouteHandler()
-           );
-
-            routes.MapUmbracoRoute(
                 name: "about",
                 url: "{lang}/about",
                 defaults: new
@@ -86,6 +73,63 @@ namespace TIO.Core
                constraints: new { lang = "[a-z]{2}", id = @"\d+" },
                virtualNodeHandler: new RecommendationNodeRouteHandler()
            );
+
+            routes.MapUmbracoRoute(
+               name: "writerArchive",
+               url: "writerArchive/{id}/{name}/{filter}",
+               defaults: new
+               {
+                   controller = "WriterArchive",
+                   action = "WriterArchive",
+                   lang = "da",
+                   filter = UrlParameter.Optional,
+                   name = UrlParameter.Optional
+               },
+               constraints: new { id = @"\d+" },
+               virtualNodeHandler: new RecommendationNodeRouteHandler()
+           );
+
+            routes.MapUmbracoRoute(
+               name: "enWriterArchive",
+               url: "{lang}/writerArchive/{id}/{name}/{filter}",
+               defaults: new
+               {
+                   controller = "WriterArchive",
+                   action = "WriterArchive",
+                   lang = "da",
+                   filter = UrlParameter.Optional,
+                   name = UrlParameter.Optional
+               },
+               constraints: new { lang = "[a-z]{2}", id = @"\d+" },
+               virtualNodeHandler: new RecommendationNodeRouteHandler()
+           );
+
+            routes.MapUmbracoRoute(
+              name: "writer",
+              url: "writer/{id}/{name}",
+              defaults: new
+              {
+                  controller = "Writer",
+                  action = "Writer",
+                  name = UrlParameter.Optional
+              },
+              constraints: new { id = @"\d+" },
+              virtualNodeHandler: new RecommendationNodeRouteHandler()
+          );
+
+            routes.MapUmbracoRoute(
+             name: "enWriter",
+             url: "{lang}/writer/{id}/{name}",
+             defaults: new
+             {
+                 controller = "Writer",
+                 action = "Writer",
+                 lang = "da",
+                 name = UrlParameter.Optional
+             },
+             constraints: new { lang = "[a-z]{2}", id = @"\d+" },
+             virtualNodeHandler: new RecommendationNodeRouteHandler()
+         );
 
             routes.MapUmbracoRoute(
                name: "enDefaultArticles",

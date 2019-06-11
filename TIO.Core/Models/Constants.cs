@@ -198,6 +198,16 @@
                 }
             }
 
+            public class WriterArchive
+            {
+                public const string NAME = "WriterArchive";
+                public enum FILTER { Recommendations, Articles, Locations}
+                public class Actions
+                {
+                    public const string INDEX = "WriterArchive";
+                }
+            }
+
             public class Article
             {
                 public const string NAME = "Article";

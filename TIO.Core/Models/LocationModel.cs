@@ -43,6 +43,7 @@ namespace TIO.Core.Models
 
         public string TranslatorName { get; private set; }
         public int TranslatorId { get; set; }
+        public DateTime Created { private set; get; }
 
         public LocationModel(
             IPublishedContent content,
@@ -81,6 +82,7 @@ namespace TIO.Core.Models
             this.FromRecommendation = content.GetPropertyValue<bool>(Constants.Location.Properties.FROM_RECOMMENDATION);
             this.Fotograf = content.GetPropertyValue<string>(Constants.Location.Properties.FOTOGRAF);
             this.FotografURL = content.GetPropertyValue<string>(Constants.Location.Properties.FOTOGRAF_URL);
+            this.Created = content.CreateDate;
 
             this.Id = content.Id;
             this.OldId = content.GetPropertyValue<int>(Constants.Location.Properties.OLD_ID);
@@ -115,41 +117,47 @@ namespace TIO.Core.Models
 
             UmbracoHelper helper = new UmbracoHelper(UmbracoContext.Current);
 
-            List<GroupOpeningHours> openingHours = new List<GroupOpeningHours>();
-            openingHours.Add(new GroupOpeningHours(helper.GetDictionaryValue("Man"), this.Openings.Monday));
-            openingHours.Add(new GroupOpeningHours(helper.GetDictionaryValue("Tir"), this.Openings.Tuesday));
-            openingHours.Add(new GroupOpeningHours(helper.GetDictionaryValue("Ons"), this.Openings.Wednesday));
-            openingHours.Add(new GroupOpeningHours(helper.GetDictionaryValue("Tor"), this.Openings.Thursday));
-            openingHours.Add(new GroupOpeningHours(helper.GetDictionaryValue("Fre"), this.Openings.Friday));
-            openingHours.Add(new GroupOpeningHours(helper.GetDictionaryValue("Lør"), this.Openings.Saturday));
-            openingHours.Add(new GroupOpeningHours(helper.GetDictionaryValue("Søn"), this.Openings.Sunday));
-
-
-            SimpleOpeningHours = new List<KeyValuePair<string, string>>();
-            
-            string fromDay = "";
-            for(int i = 0; i < openingHours.Count; i++)
+            if (this.Openings != null)
             {
-                var openingHour = openingHours[i];
-                string currentHours = string.Format("{0} - {1}", openingHour.Date.From, openingHour.Date.Till); 
+                List<GroupOpeningHours> openingHours = new List<GroupOpeningHours>();
 
-                if ("-".Equals(currentHours.Trim()))
-                {
-                    currentHours = helper.GetDictionaryValue("Lukket");
-                }
+                openingHours.Add(new GroupOpeningHours(helper.GetDictionaryValue("Man"), this.Openings.Monday));
+                openingHours.Add(new GroupOpeningHours(helper.GetDictionaryValue("Tir"), this.Openings.Tuesday));
+                openingHours.Add(new GroupOpeningHours(helper.GetDictionaryValue("Ons"), this.Openings.Wednesday));
+                openingHours.Add(new GroupOpeningHours(helper.GetDictionaryValue("Tor"), this.Openings.Thursday));
+                openingHours.Add(new GroupOpeningHours(helper.GetDictionaryValue("Fre"), this.Openings.Friday));
+                openingHours.Add(new GroupOpeningHours(helper.GetDictionaryValue("Lør"), this.Openings.Saturday));
+                openingHours.Add(new GroupOpeningHours(helper.GetDictionaryValue("Søn"), this.Openings.Sunday));
 
-                if (SimpleOpeningHours.Count > 0 && SimpleOpeningHours[SimpleOpeningHours.Count - 1].Value == currentHours)
+
+                SimpleOpeningHours = new List<KeyValuePair<string, string>>();
+
+                string fromDay = "";
+                for (int i = 0; i < openingHours.Count; i++)
                 {
-                    SimpleOpeningHours.RemoveAt(SimpleOpeningHours.Count - 1);
-                    SimpleOpeningHours.Add(new KeyValuePair<string, string>(string.Format("{0} - {1}", fromDay, openingHour.Day), currentHours));
-                }
-                else
-                {
-                    fromDay = openingHour.Day;
-                    SimpleOpeningHours.Add(new KeyValuePair<string, string>(fromDay, currentHours));
+                    var openingHour = openingHours[i];
+                    string currentHours = string.Format("{0} - {1}", openingHour.Date.From, openingHour.Date.Till);
+
+                    if ("-".Equals(currentHours.Trim()))
+                    {
+                        currentHours = helper.GetDictionaryValue("Lukket");
+                    }
+
+                    if (SimpleOpeningHours.Count > 0 && SimpleOpeningHours[SimpleOpeningHours.Count - 1].Value == currentHours)
+                    {
+                        SimpleOpeningHours.RemoveAt(SimpleOpeningHours.Count - 1);
+                        SimpleOpeningHours.Add(new KeyValuePair<string, string>(string.Format("{0} - {1}", fromDay, openingHour.Day), currentHours));
+                    }
+                    else
+                    {
+                        fromDay = openingHour.Day;
+                        SimpleOpeningHours.Add(new KeyValuePair<string, string>(fromDay, currentHours));
+                    }
                 }
             }
         }
+
+            
     }
 
     public class GroupOpeningHours

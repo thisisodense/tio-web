@@ -53,10 +53,11 @@ namespace TIO.Core.Models
             this.Articles
                 .AddRange(articles
                     .Select(x => ActicleFactory.Create(x, articleRepository, contentService, isEnglish, isDetails: false))
+                    .OrderByDescending(x => x.PublishDate)
                     .Skip((page - 1) * pageSize)
                     .Take(pageSize));
 
-            this.Articles = this.Articles.OrderByDescending(x => x.PublishDate).ToList();
+            this.Articles = this.Articles.ToList();
         }
     }
 }

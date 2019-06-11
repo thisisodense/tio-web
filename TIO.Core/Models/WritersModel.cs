@@ -3,6 +3,7 @@ using System.Linq;
 using Umbraco.Core.Models;
 using Umbraco.Web.Models;
 using Umbraco.Web;
+using Umbraco.Core.Services;
 
 namespace TIO.Core.Models
 {
@@ -10,7 +11,11 @@ namespace TIO.Core.Models
     {
         public List<WriterModel> Writers { get; private set; }
         public string About { get; private set; }
-        public WritersModel(IPublishedContent content) : base(content)
+        public WritersModel(
+            IPublishedContent content, 
+            bool isEnglish, 
+            bool isDetails,
+            IContentService contentService) : base(content)
         {
             this.Writers = new List<WriterModel>();
             IPublishedContent writerRepository = content.FirstChild(x => x.DocumentTypeAlias == Constants.NodeAlias.WRITER_REPOSITORY);
@@ -29,7 +34,13 @@ namespace TIO.Core.Models
             IPublishedContent recommendationsRespository = content
                           .FirstChild(x => x.DocumentTypeAlias == Constants.NodeAlias.RECOMMENDATIONS_REPOSITORY);
 
-            this.Writers.AddRange(writers.Select(x => WriterFactory.Create(x, recommendationsRespository)));
+            IPublishedContent articlesRespository = content
+                          .FirstChild(x => x.DocumentTypeAlias == Constants.NodeAlias.ARTICLE_REPOSISTORY);
+
+            IPublishedContent locationsRespository = content
+                          .FirstChild(x => x.DocumentTypeAlias == Constants.NodeAlias.LOCATION_REPOSITORY);
+
+            this.Writers.AddRange(writers.Select(x => WriterFactory.Create(x, recommendationsRespository, articlesRespository, locationsRespository, isEnglish, isDetails, contentService, Constants.Controllers.WriterArchive.FILTER.Recommendations, 0)));
 
         }
     }

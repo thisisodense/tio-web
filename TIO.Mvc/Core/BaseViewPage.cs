@@ -14,6 +14,10 @@ namespace TIO.Mvc.Core
             base.InitializePage();
         }
 
+        public string BannerId { get { return "bannerCrop" + new Random().Next(1, 7).ToString(); } }
+
+
+
         public override void Execute()
         {
            throw new NotImplementedException();

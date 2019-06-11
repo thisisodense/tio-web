@@ -13,10 +13,17 @@ namespace TIO.Core.Controllers
     {
         public ActionResult Writer(RenderModel model, int id, string name)
         {
+
             IPublishedContent recommendationsRespository = Umbraco.TypedContentAtRoot().FirstOrDefault()
                          .FirstChild(x => x.DocumentTypeAlias == Constants.NodeAlias.RECOMMENDATIONS_REPOSITORY);
 
-            WriterModel writerModel = WriterFactory.Create(model.Content, recommendationsRespository);
+            IPublishedContent articleRespository = Umbraco.TypedContentAtRoot().FirstOrDefault()
+                         .FirstChild(x => x.DocumentTypeAlias == Constants.NodeAlias.ARTICLE_REPOSISTORY);
+
+            IPublishedContent locationRespository = Umbraco.TypedContentAtRoot().FirstOrDefault()
+                         .FirstChild(x => x.DocumentTypeAlias == Constants.NodeAlias.LOCATION_REPOSITORY);
+
+            WriterModel writerModel = WriterFactory.Create(model.Content, recommendationsRespository, articleRespository, locationRespository, Site.IsEnglish, false, Services.ContentService, Constants.Controllers.WriterArchive.FILTER.Recommendations, 0);
 
             string expectedName = writerModel.Name.ToSeoUrl();
 

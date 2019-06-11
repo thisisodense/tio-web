@@ -8,7 +8,7 @@ namespace TIO.Core.Controllers
     {
         public ActionResult About()
         {
-            return CurrentTemplate(new WritersModel(CurrentPage));
+            return CurrentTemplate(new WritersModel(CurrentPage, Site.IsEnglish, false, Services.ContentService));
         }
     }
 }

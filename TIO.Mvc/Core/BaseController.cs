@@ -1,4 +1,5 @@
-﻿using Umbraco.Web.Mvc;
+﻿using Umbraco.Web;
+using Umbraco.Web.Mvc;
 
 namespace TIO.Mvc.Core
 {
@@ -6,5 +7,6 @@ namespace TIO.Mvc.Core
     {
         private SiteHelper _site;
         public SiteHelper Site { get { return _site ?? (_site = new SiteHelper()); } }
+        public UmbracoHelper Helper { get { return new UmbracoHelper(UmbracoContext.Current); } }
     } 
 }

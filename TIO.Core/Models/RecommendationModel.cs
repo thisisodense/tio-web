@@ -19,6 +19,7 @@ namespace TIO.Core.Models
         public string WriterName { get; private set; }
         public string WriterUrl { get; private set; }
         public string WriterImage { get; private set; }
+        public string WriterBackground { get; private set; }
         public string HeadLine { get; private set; }
         public string SubHeader { get; private set; }
         public string Body { get; private set; }
@@ -118,6 +119,7 @@ namespace TIO.Core.Models
                 {
                     this.WriterName = writer.Name;
                     this.WriterImage = writer.GetCropUrl(Constants.Writer.Properties.IMAGE, Constants.Crop.WRITER_IMAGE);
+                    this.WriterBackground = writer.GetPropertyValue<string>(Constants.Writer.Properties.BACKGROUND);
                 }             
             }
 

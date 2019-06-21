@@ -11,7 +11,7 @@ namespace TIO.Core.Controllers
     {
         public ActionResult Articles(int? tagId, string tag, int page = 1)
         {
-            IPublishedContent articleRespository = Umbraco.TypedContentAtRoot().FirstOrDefault()
+            IPublishedContent articleRespository = Helper.TypedContentAtRoot().FirstOrDefault()
                          .FirstChild(x => x.DocumentTypeAlias == Constants.NodeAlias.RECOMMENDATIONS_REPOSITORY);
 
             ArticlesModel model = new ArticlesModel(

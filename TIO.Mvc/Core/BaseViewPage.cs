@@ -1,4 +1,5 @@
 ﻿using System;
+using Umbraco.Web;
 using Umbraco.Web.Mvc;
 
 namespace TIO.Mvc.Core
@@ -13,6 +14,8 @@ namespace TIO.Mvc.Core
         {
             base.InitializePage();
         }
+
+        public UmbracoHelper Helper { get { return new UmbracoHelper(UmbracoContext.Current); } }
 
         public string BannerId { get { return "bannerCrop" + new Random().Next(1, 7).ToString(); } }
 

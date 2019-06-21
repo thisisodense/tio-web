@@ -14,13 +14,13 @@ namespace TIO.Core.Controllers
     {
         public ActionResult WriterArchive(RenderModel model, int id, string name, FILTER filter = FILTER.Recommendations, int page = 1)
         {
-            IPublishedContent recommendationsRespository = Umbraco.TypedContentAtRoot().FirstOrDefault()
+            IPublishedContent recommendationsRespository = Helper.TypedContentAtRoot().FirstOrDefault()
                          .FirstChild(x => x.DocumentTypeAlias == Constants.NodeAlias.RECOMMENDATIONS_REPOSITORY);
 
-            IPublishedContent articleRespository = Umbraco.TypedContentAtRoot().FirstOrDefault()
+            IPublishedContent articleRespository = Helper.TypedContentAtRoot().FirstOrDefault()
                          .FirstChild(x => x.DocumentTypeAlias == Constants.NodeAlias.ARTICLE_REPOSISTORY);
 
-            IPublishedContent locationRespository = Umbraco.TypedContentAtRoot().FirstOrDefault()
+            IPublishedContent locationRespository = Helper.TypedContentAtRoot().FirstOrDefault()
                          .FirstChild(x => x.DocumentTypeAlias == Constants.NodeAlias.LOCATION_REPOSITORY);
 
             WriterModel writerModel = WriterFactory

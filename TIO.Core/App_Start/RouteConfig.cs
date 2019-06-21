@@ -233,9 +233,9 @@ namespace TIO.Core
             );
 
             routes.MapRoute(
-                name: "defaultMVC",
-                url: "{controller}/{action}/{id}",
-                defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional });
+               name: "defaultMVC",
+               url: "{controller}/{action}/{id}",
+               defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional });
 
             routes.MapHttpRoute(
                 name: "DictionanyApi",

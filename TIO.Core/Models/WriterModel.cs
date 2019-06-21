@@ -25,9 +25,9 @@ namespace TIO.Core.Models
         public int NumberOfLocations { get { return this.Locations.Count; } }
         public string Link { get; private set; }
         public string WriterSince { get; set; }
-        public List<RecommendationModel> Recommendations { get; private set; }
-        public List<ArticleModel> Articles { get; private set; }
-        public List<LocationModel> Locations { get; private set; }
+        public List<IPublishedContent> Recommendations { get; private set; }
+        public List<IPublishedContent> Articles { get; private set; }
+        public List<IPublishedContent> Locations { get; private set; }
         public List<ArchiveModel> Archive { get; private set; }
         public FILTER Filter { get; private set; }
         public int Page { get; private set; }
@@ -52,48 +52,64 @@ namespace TIO.Core.Models
             this.Filter = filter;
             this.Page = page;
 
-            this.Recommendations = new List<RecommendationModel>();
-            this.Locations = new List<LocationModel>();
-            this.Articles = new List<ArticleModel>();
+            this.Recommendations = new List<IPublishedContent>();
+            this.Locations = new List<IPublishedContent>();
+            this.Articles = new List<IPublishedContent>();
 
             if (recommendationsRespository != null)
             {
-                this.Recommendations.AddRange(recommendationsRespository.Children(x => x.IsVisible() && x.GetPropertyValue<int>(Constants.Recommendation.Properties.WRITER) == content.Id)
-                                    .Select(x => RecommendationFactory.Create(x, recommendationsRespository, contentService, isEnglish, isDetails)));
+                this.Recommendations.AddRange(recommendationsRespository.Children(x => x.IsVisible() && x.GetPropertyValue<int>(Constants.Recommendation.Properties.WRITER) == content.Id));
             }
 
             if(articleRespository != null)
             {
-                var articles = articleRespository.Children(x => x.IsVisible() && x.GetPropertyValue<int>(Constants.Article.Properties.WRITER_LONGREAD) == content.Id);
                 this.Articles
-                       .AddRange(articles
-                           .Select(x => ActicleFactory.Create(x, articleRespository, contentService, isEnglish, isDetails: false))
-                           .OrderByDescending(x => x.PublishDate));
+                       .AddRange(articleRespository.Children(x => x.IsVisible() && x.GetPropertyValue<int>(Constants.Article.Properties.WRITER_LONGREAD) == content.Id));
             }
 
             if (locationRepository != null)
             {
-                var locations = locationRepository.Children(x => x.IsVisible() && x.GetPropertyValue<int>(Constants.Location.Properties.WRITER) == content.Id);
                 this.Locations
-                        .AddRange(locations.Select(x => LocationFactory.Create(x, recommendationsRespository, contentService, isEnglish, isDetails: false)));
+                        .AddRange(locationRepository.Children(x => x.IsVisible() && x.GetPropertyValue<int>(Constants.Location.Properties.WRITER) == content.Id));
+
             }
 
             switch (this.Filter)
             {
                 case FILTER.Recommendations:
                     this.Archive = this.Recommendations
-                        .Select(x => new ArchiveModel(
-                            content, x.GetId(), x.HeadLine, x.SubHeader, x.Body, x.ImageUrl, x.StartDate, this.Filter)).ToList();
+                        .Select(x => new ArchiveModel(x, 
+                            isEnglish ? Constants.Recommendation.Properties.HEADLINE_UK : Constants.Recommendation.Properties.HEADLINE,
+                            isEnglish ? Constants.Recommendation.Properties.SUB_HEADER_UK : Constants.Recommendation.Properties.SUB_HEADER,
+                            isEnglish ? Constants.Recommendation.Properties.BODY_UK : Constants.Recommendation.Properties.BODY,
+                            Constants.Recommendation.Properties.IMAGE_URL,
+                            Constants.Crop.RECOMMENDATION_IMAGE,
+                            Constants.Recommendation.Properties.START_DATE,
+                            this.Filter
+                            )).ToList();
                     break;
                 case FILTER.Articles:
                     this.Archive = this
-                        .Articles.Select(x => new ArchiveModel(
-                            content, x.Id, x.Headline, "", x.Summary, x.Image, x.PublishDate, this.Filter)).ToList();
+                        .Articles.Select(x => new ArchiveModel(x, 
+                            isEnglish ? Constants.Article.Properties.headlineEnglish : Constants.Article.Properties.HEADLINE,
+                            "",
+                            isEnglish ? Constants.Article.Properties.summaryEnglish : Constants.Article.Properties.SUMMARY,
+                            Constants.Article.Properties.Image,
+                            Constants.Crop.RECOMMENDATION_IMAGE,
+                            Constants.Article.Properties.PUBLISH_DATE,
+                            this.Filter)).ToList();
                     break;
                 case FILTER.Locations:
                     this.Archive = this.Locations
-                        .Select(x => new ArchiveModel(
-                            content, x.Id, x.Title, x.ShortDescription, x.LongDescription, x.Image, x.Created, this.Filter)).ToList();
+                        .Select(x => new ArchiveModel(x, 
+                            Constants.Location.Properties.TITLE, 
+                            isEnglish ? Constants.Location.Properties.SHORT_DESCRIPTION_EN : Constants.Location.Properties.SHORT_DESCRIPTION,
+                            isEnglish ? Constants.Location.Properties.LONG_DESCRIPTION_EN : Constants.Location.Properties.LONG_DESCRIPTION,
+                            Constants.Location.Properties.IMAGE,
+                            Constants.Crop.RECOMMENDATION_IMAGE,
+                            "",
+                            this.Filter
+                            )).ToList();
                     break;
             }
 

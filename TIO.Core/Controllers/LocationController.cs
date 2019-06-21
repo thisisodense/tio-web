@@ -17,7 +17,7 @@ namespace TIO.Core.Controllers
             int id,
             string name)
         {
-            IPublishedContent recommendationsRespository = Umbraco.TypedContentAtRoot().FirstOrDefault()
+            IPublishedContent recommendationsRespository = Helper.TypedContentAtRoot().FirstOrDefault()
                          .FirstChild(x => x.DocumentTypeAlias == Constants.NodeAlias.RECOMMENDATIONS_REPOSITORY);
 
             LocationModel locationModel =  LocationFactory.Create(model.Content, recommendationsRespository, Services.ContentService, Site.IsEnglish, isDetails:true);

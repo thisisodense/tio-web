@@ -16,7 +16,7 @@ namespace TIO.Core.Controllers
             int id, 
             string name)
         {
-            IPublishedContent recommendationRespository = Umbraco.TypedContentAtRoot().FirstOrDefault()
+            IPublishedContent recommendationRespository = Helper.TypedContentAtRoot().FirstOrDefault()
                          .FirstChild(x => x.DocumentTypeAlias == Constants.NodeAlias.RECOMMENDATIONS_REPOSITORY);
 
             RecommendationModel recommendationModel = RecommendationFactory.Create(model.Content, recommendationRespository, Services.ContentService, Site.IsEnglish, isDetails: true);

@@ -179,6 +179,15 @@
                 }
             }
 
+            public class LocationArchive
+            {
+                public const string NAME = "LocationArchive";
+                public class Actions
+                {
+                    public const string LOCATION_ARCHIVE = "LocationArchive";
+                }
+            }
+
             public class Location
             {
                 public const string NAME = "Location";

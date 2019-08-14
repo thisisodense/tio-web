@@ -118,7 +118,7 @@ namespace TIO.Core.Models
                 if (writer != null)
                 {
                     this.WriterName = writer.Name;
-                    this.WriterImage = writer.GetCropUrl(Constants.Writer.Properties.IMAGE, Constants.Crop.WRITER_IMAGE);
+                    this.WriterImage = writer.GetCropUrl(Constants.Writer.Properties.IMAGE, Constants.Crop.MINITURE_CROP);
                     this.WriterBackground = writer.GetPropertyValue<string>(Constants.Writer.Properties.BACKGROUND);
                 }             
             }

@@ -75,6 +75,34 @@ namespace TIO.Core
            );
 
             routes.MapUmbracoRoute(
+              name: "enLocationArchive",
+              url: "{lang}/placeArchive/{id}/{name}",
+              defaults: new
+              {
+                  controller = "LocationArchive",
+                  action = "LocationArchive",
+                  lang = "da",
+                  name = UrlParameter.Optional
+              },
+              constraints: new { lang = "[a-z]{2}", id = @"\d+" },
+              virtualNodeHandler: new RecommendationNodeRouteHandler()
+          );
+
+            routes.MapUmbracoRoute(
+               name: "locationArchive",
+               url: "placeArchive/{id}/{name}",
+               defaults: new
+               {
+                   controller = "LocationArchive",
+                   action = "LocationArchive",
+                   lang = "da",
+                   name = UrlParameter.Optional
+               },
+               constraints: new { lang = "[a-z]{2}", id = @"\d+" },
+               virtualNodeHandler: new RecommendationNodeRouteHandler()
+           );
+
+            routes.MapUmbracoRoute(
                name: "writerArchive",
                url: "writerArchive/{id}/{name}/{filter}",
                defaults: new

@@ -105,6 +105,7 @@
     <Compile Include="Controllers\LocationController.cs" />
     <Compile Include="Controllers\LocationsController.cs" />
     <Compile Include="Controllers\RecommendationController.cs" />
+    <Compile Include="Controllers\LocationArchiveController.cs" />
     <Compile Include="Controllers\RecommendationsController.cs" />
     <Compile Include="Controllers\WriterAcrhiveController.cs" />
     <Compile Include="Controllers\WriterController.cs" />
@@ -115,6 +116,7 @@
     <Compile Include="Models\ArticlesModel.cs" />
     <Compile Include="Models\ArticleUKModel.cs" />
     <Compile Include="Models\Constants.cs" />
+    <Compile Include="Models\LocationArchiveModel.cs" />
     <Compile Include="Models\LocationDKModel.cs" />
     <Compile Include="Models\LocationFactory.cs" />
     <Compile Include="Models\LocationModel.cs" />

@@ -52,7 +52,7 @@ namespace TIO.Core.Models
 
             this.Recommendations = recommendationContent
                 .Select(x => RecommendationFactory.Create(x, recommendationRepository, contentService, isEnglish, false))
-                .OrderBy(x => x.StartDate)
+                .OrderByDescending(x => x.StartDate)
                 .Skip((page - 1) * pageSize)
                 .Take(pageSize)
                 .ToList();

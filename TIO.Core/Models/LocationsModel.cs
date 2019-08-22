@@ -39,7 +39,7 @@ namespace TIO.Core.Models
             var locations = helper.TagQuery.GetContentByTag(tag, Constants.NodeAlias.TAG_GROUP);
 
             this.Locations
-                .AddRange(locations.Where(x => x.GetPropertyValue<bool>(Constants.Location.Properties.PLACES_TO_GO_IN_2016))
+                .AddRange(locations.Where(x => x.GetPropertyValue<bool>(Constants.Location.Properties.PUBLISHED))
                 .Select(x => LocationFactory.Create(x, recommendationRepository, contentService, isEnglish, isDetails: false)));
         }
     }

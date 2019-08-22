@@ -109,7 +109,7 @@
                 public const string HASHTAGS = "hashtags";
                 public const string OLD_ID = "oldid";
                 public const string PLACES_TO_GO_IN_2015 = "PlacesToGoin2015";
-                public const string PLACES_TO_GO_IN_2016 = "PlacesToGoin2016";
+                public const string PUBLISHED = "PlacesToGoin2016";
                 public const string FROM_RECOMMENDATION = "fromRecommendation";
                 public const string FOTOGRAF = "fotograf";
                 public const string FOTOGRAF_URL = "fotografURL";

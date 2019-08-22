@@ -78,7 +78,7 @@ namespace TIO.Core.Models
             this.ShortDescription = content.GetPropertyValue<string>(this.ShortDescriptionProperty);
             this.LongDescription = content.GetPropertyValue<string>(this.LongDescriptionProperty);
             this.PlacesToGoin2015 = content.GetPropertyValue<bool>(Constants.Location.Properties.PLACES_TO_GO_IN_2015);
-            this.PlacesToGoIn2016 = content.GetPropertyValue<bool>(Constants.Location.Properties.PLACES_TO_GO_IN_2016);
+            this.PlacesToGoIn2016 = content.GetPropertyValue<bool>(Constants.Location.Properties.PUBLISHED);
             this.FromRecommendation = content.GetPropertyValue<bool>(Constants.Location.Properties.FROM_RECOMMENDATION);
             this.Fotograf = content.GetPropertyValue<string>(Constants.Location.Properties.FOTOGRAF);
             this.FotografURL = content.GetPropertyValue<string>(Constants.Location.Properties.FOTOGRAF_URL);

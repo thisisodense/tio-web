@@ -29,7 +29,8 @@ namespace ThisIsOdense.Website.Controllers
                  model.Content,
                  recommendationsRespository,
                  Services.ContentService,
-                 page);
+                 page,
+                 model.Content.GetPropertyValue<bool>(Constants.Location.Properties.PUBLISHED));
 
             string expectedName = locationArchiveModel.Name.ToSeoUrl();
 

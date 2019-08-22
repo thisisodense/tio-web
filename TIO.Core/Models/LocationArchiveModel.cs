@@ -14,6 +14,7 @@ namespace TIO.Core.Models
     {
         public string LongDescription { get; private set; }
         public string Image { get; private set; }
+        public bool Published { get; private set; }
         public int Id { get; private set; }
         public string Name { get; private set; }
         public int NumberOfRecommendations { get { return this.Total; } }
@@ -26,14 +27,15 @@ namespace TIO.Core.Models
 
         public LocationArchiveModel(
             string longDescription,
-            string image, 
+            string image,
             int id,
             string name,
             bool isEnglish,
             IPublishedContent content,
             IPublishedContent recommendationRepository,
             IContentService contentService,
-            int page
+            int page,
+            bool published
             ) : base(content)
         {
             this.LongDescription = longDescription;
@@ -41,6 +43,7 @@ namespace TIO.Core.Models
             this.Name = name;
             this.Id = id;
             this.Page = page;
+            this.Published = published;
 
             var recommendationContent = recommendationRepository
                 .Children(x => x.IsVisible() && x.GetPropertyValue<int>(Constants.Recommendation.Properties.LOCATION) == this.Id);
@@ -56,6 +59,11 @@ namespace TIO.Core.Models
                 .Skip((page - 1) * pageSize)
                 .Take(pageSize)
                 .ToList();
+
+            if (string.IsNullOrEmpty(this.Image))
+            {
+                this.Image = this.Recommendations.FirstOrDefault().ImageUrl;
+            }
         }
     }
 }
